@@ -1,9 +1,9 @@
+namespace Api.Models.Domain ; 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Service.Model.Domain ; 
 
 public class Service
 {

@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 //database
-builder.Services.AddDbContext<ServiceContext>(options 
+builder.Services.AddDbContext<ServiceContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("TrackedServices"))
 ) ; 
 
