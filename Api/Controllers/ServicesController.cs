@@ -14,40 +14,46 @@ namespace Api.Controllers
     [ApiController]
     public class ServicesController : ControllerBase
     {
-        private readonly ServiceContext _context;
+        private readonly ServiceContext context;
 
         public ServicesController(ServiceContext context)
         {
-            _context = context;
+            // this.context = context;
+            this.context = context ; 
         }
 
         // GET: api/Services
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Service>>> GetServices()
+        public async Task< ActionResult<IEnumerable<Service>>> GetServices()
         {
-          if (_context.Services == null)
+        //   if (this.context.Services == null)
+          if (this.context.Services == null)
           {
               return NotFound();
           }
-            return await _context.Services.ToListAsync();
+            // return await this.context.Services.ToListAsync();
+            var serviceLists =  await this.context.Services.ToListAsync();
+
+            return serviceLists ;
         }
 
         // GET: api/Services/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Service>> GetService(Guid id)
         {
-          if (_context.Services == null)
-          {
-              return NotFound();
-          }
-            var service = await _context.Services.FindAsync(id);
+            if (this.context.Services == null)
+            {
+                return NotFound();
+            }
+
+            var service = await this.context.Services.FindAsync(id);
 
             if (service == null)
             {
                 return NotFound();
             }
 
-            return service;
+            return service ;
         }
 
         // PUT: api/Services/5
@@ -60,11 +66,11 @@ namespace Api.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(service).State = EntityState.Modified;
+            this.context.Entry(service).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await this.context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -86,12 +92,12 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Service>> PostService(Service service)
         {
-          if (_context.Services == null)
+          if (this.context.Services == null)
           {
               return Problem("Entity set 'ServiceContext.Services'  is null.");
           }
-            _context.Services.Add(service);
-            await _context.SaveChangesAsync();
+            this.context.Services.Add(service);
+            await this.context.SaveChangesAsync();
 
             return CreatedAtAction("GetService", new { id = service.Id }, service);
         }
@@ -100,25 +106,26 @@ namespace Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteService(Guid id)
         {
-            if (_context.Services == null)
+            if (this.context.Services == null)
             {
                 return NotFound();
             }
-            var service = await _context.Services.FindAsync(id);
+            var service = await this.context.Services.FindAsync(id);
             if (service == null)
             {
                 return NotFound();
             }
 
-            _context.Services.Remove(service);
-            await _context.SaveChangesAsync();
+            this.context.Services.Remove(service);
+            await this.context.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool ServiceExists(Guid id)
         {
-            return (_context.Services?.Any(e => e.Id == id)).GetValueOrDefault();
+            // return (this.context.Services?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (this.context.Services?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
