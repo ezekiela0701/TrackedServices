@@ -13,11 +13,10 @@ public class Client
 
     public string Name { get; set; }
 
-    public Guid IdService { get; set; }
-
+    //public Guid IdService { get; set; }
 
     //navigation properties
 
-    public Service Service { get; set; }
+    //public Service Service { get; set; }
 
 }
