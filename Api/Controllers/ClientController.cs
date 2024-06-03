@@ -28,8 +28,8 @@ namespace Api.Controllers
         // GET: api/Client
         [HttpGet]
         // public async Task<ActionResult<IEnumerable<Client>>> GetClients()
-        public async Task<ActionResult<IList<Client>>> GetClients()
-        // public async Task<IActionResult> GetClients()
+        // public async Task<ActionResult<IList<Client>>> GetClients()
+        public async Task<IActionResult> GetClients()
         {
             if (context.Clients == null)
             {
@@ -41,20 +41,20 @@ namespace Api.Controllers
             var clientsDomain =  await clientRepository.GetAllClient();
 
             //mapping dommain models to DTO
-            // var clientsDto = new List<ClientDto>() ;
+            var clientsDto = new List<ClientDto>() ;
 
-            // foreach(var clientDomain in clientsDomain){
+            foreach(var clientDomain in clientsDomain){
 
-            //     clientsDto.Add(new ClientDto(){
+                clientsDto.Add(new ClientDto(){
 
-            //         Name = clientDomain.Name 
+                    Name = clientDomain.Name 
 
-            //     }) ; 
+                }) ; 
 
-            // }
+            }
 
-            // return clientsDto ; 
-            return clientsDomain ; 
+            return Ok(clientsDto) ; 
+            // return Ok(clientsDomain) ; 
 
         }
 

@@ -275,14 +275,6 @@ F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.AssemblyInfo.cs
 F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.csproj.CoreCompileInputs.cache
 F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.MvcApplicationPartsAssemblyInfo.cs
 F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.MvcApplicationPartsAssemblyInfo.cache
-F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\staticwebassets\msbuild.Api.Microsoft.AspNetCore.StaticWebAssets.props
-F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\staticwebassets\msbuild.build.Api.props
-F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Api.props
-F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Api.props
-F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\staticwebassets.pack.json
-F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\staticwebassets.build.json
-F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\staticwebassets.development.json
-F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\scopedcss\bundle\Api.styles.css
 F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.csproj.CopyComplete
 F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.dll
 F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\refint\Api.dll
@@ -292,3 +284,8 @@ F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\ref\Api.dll
 F:\dafe\Projects\TrackedServices\Api\bin\Debug\net7.0\dotnet-ef.dll
 F:\dafe\Projects\TrackedServices\Api\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.dll
 F:\dafe\Projects\TrackedServices\Api\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.RazorAssemblyInfo.cache
+F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.RazorAssemblyInfo.cs
+F:\dafe\Projects\TrackedServices\Api\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
+F:\dafe\Projects\TrackedServices\Api\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+F:\dafe\Projects\TrackedServices\Api\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
