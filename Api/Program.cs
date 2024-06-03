@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore ; 
 using Api.Data ; 
+using Api.Repositories ; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ServiceContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("TrackedServices"))
 ) ; 
+
+builder.Services.AddScoped<IClientRepository , SqlClientRepository>() ;
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

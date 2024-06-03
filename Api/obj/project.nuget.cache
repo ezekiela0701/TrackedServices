@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nbLJ2nc7g1X/PlWjoyM7rILufwbufEMMU0/7A7GQT/kDjgsZVhGoFJ/VvFnPAltZeYgRIWUg8qX5WaE83ZEGJA==",
+  "dgSpecHash": "5Pxi5qWphyDO9XIlb7HuzGN2Q3ObBeuN0mHsraQpaUc0BPaxkz157638eKabvzfuUn032lNnpRBcImfJyfql7A==",
   "success": true,
   "projectFilePath": "F:\\dafe\\Projects\\TrackedServices\\Api\\Api.csproj",
   "expectedPackageFiles": [
@@ -54,8 +54,8 @@
     "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
     "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.configuration.binder\\7.0.0\\microsoft.extensions.configuration.binder.7.0.0.nupkg.sha512",
-    "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
-    "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.1\\microsoft.extensions.dependencyinjection.abstractions.8.0.1.nupkg.sha512",
     "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.dependencymodel\\7.0.0\\microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512",
     "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\7.0.0\\microsoft.extensions.fileproviders.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\LiDa\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\7.0.0\\microsoft.extensions.hosting.abstractions.7.0.0.nupkg.sha512",

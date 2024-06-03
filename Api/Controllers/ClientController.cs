@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Api.Data;
 using Api.Models.Domain;
+using Api.Models.DTO;
+using Api.Repositories ; 
 
 namespace Api.Controllers
 {
@@ -15,28 +17,45 @@ namespace Api.Controllers
     public class ClientController : ControllerBase
     {
         private readonly ServiceContext context;
+        private readonly IClientRepository clientRepository;
 
-        public ClientController(ServiceContext context)
+        public ClientController(ServiceContext context , IClientRepository clientRepository )
         {
-            this.context = context;
+            this.context          = context;
+            this.clientRepository = clientRepository;
         }
 
         // GET: api/Client
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Client>>> GetClients()
+        // public async Task<ActionResult<IEnumerable<Client>>> GetClients()
+        public async Task<ActionResult<IList<Client>>> GetClients()
+        // public async Task<IActionResult> GetClients()
         {
-            if (this.context.Clients == null)
+            if (context.Clients == null)
             {
                 return NotFound();
             }
 
             //Get data from client database
-            var clients =  await this.context.Clients.ToListAsync();
+            // var clientsDomain =  await this.context.Clients.ToListAsync();
+            var clientsDomain =  await clientRepository.GetAllClient();
 
             //mapping dommain models to DTO
-            
+            // var clientsDto = new List<ClientDto>() ;
 
-            return clients ; 
+            // foreach(var clientDomain in clientsDomain){
+
+            //     clientsDto.Add(new ClientDto(){
+
+            //         Name = clientDomain.Name 
+
+            //     }) ; 
+
+            // }
+
+            // return clientsDto ; 
+            return clientsDomain ; 
+
         }
 
         // GET: api/Client/5

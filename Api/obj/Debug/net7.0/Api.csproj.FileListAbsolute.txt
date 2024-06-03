@@ -290,3 +290,5 @@ F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.pdb
 F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\Api.genruntimeconfig.cache
 F:\dafe\Projects\TrackedServices\Api\obj\Debug\net7.0\ref\Api.dll
 F:\dafe\Projects\TrackedServices\Api\bin\Debug\net7.0\dotnet-ef.dll
+F:\dafe\Projects\TrackedServices\Api\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.dll
+F:\dafe\Projects\TrackedServices\Api\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
