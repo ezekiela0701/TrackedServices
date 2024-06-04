@@ -18,4 +18,6 @@ public interface IClientRepository
 
     public Task <Client?> UpdateClient(Guid id , Client client) ;
 
+    public Task <Client?> DeleteClient(Guid id) ;
+
 }

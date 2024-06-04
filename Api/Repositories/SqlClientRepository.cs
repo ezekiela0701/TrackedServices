@@ -56,6 +56,22 @@ namespace Api.Repositories {
 
         }
 
+        public async Task <Client> DeleteClient(Guid id ){
+
+            var clientExisting = await context.Clients.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(clientExisting == null){
+                return null ; 
+            }
+
+            context.Clients.Remove(clientExisting) ;
+
+            await context.SaveChangesAsync() ;
+
+            return clientExisting ; 
+
+        }
+
     }
 
 }

@@ -123,28 +123,20 @@ namespace Api.Controllers
 
 
         // DELETE: api/Client/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:Guid}")]
         public async Task<IActionResult> DeleteClient(Guid id)
         {
-            if (this.context.Clients == null)
-            {
-                return NotFound();
-            }
-            var client = await this.context.Clients.FindAsync(id);
-            if (client == null)
-            {
+
+            var clientDomainModel = await clientRepository.DeleteClient(id) ;
+
+            if(clientDomainModel == null){
                 return NotFound() ;
             }
 
-            this.context.Clients.Remove(client);
-            await this.context.SaveChangesAsync();
+            var clientDto = mapper.Map<Client>(clientDomainModel) ;
 
-            return NoContent();
-        }
+            return Ok(clientDto) ;
 
-        private bool ClientExists(Guid id)
-        {
-            return (this.context.Clients?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
