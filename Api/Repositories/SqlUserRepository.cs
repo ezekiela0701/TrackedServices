@@ -35,5 +35,13 @@ namespace Api.Repositories
 
         }
 
+        public async Task<User> AddUser(User user)
+        {
+            context.Users.AddAsync(user) ;
+            await context.SaveChangesAsync() ; 
+
+            return user ; 
+        }
+
     }
 }

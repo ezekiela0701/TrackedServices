@@ -68,8 +68,15 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> AddUser([FromBody] UserAddRequestDto userAddRequestDto)
         {
+            var userDomainModel = mapper.Map<User>(userAddRequestDto) ; 
+            await userRepository.AddUser(userDomainModel) ; 
+
+            var clientDto = mapper.Map<UserDto>(userDomainModel) ;
+
+            return Ok(clientDto); 
+
         }
 
         [HttpPut("{id}")]

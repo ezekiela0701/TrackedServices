@@ -34,7 +34,7 @@ namespace Api.Repositories {
 
         public async Task <Client> AddClient(Client client){
 
-            await context.Clients.AddAsync(client);
+            context.Clients.AddAsync(client);
             await context.SaveChangesAsync() ;
             return client ; 
 
