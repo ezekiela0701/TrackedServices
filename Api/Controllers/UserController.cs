@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Api.Repositories ; 
+using Api.Data ; 
+using Api.Models.Domain ; 
+using Api.Models.DTO ; 
+using Api.Mapping ; 
+using AutoMapper ; 
 
 namespace Api.Controllers
 {
@@ -10,15 +17,41 @@ namespace Api.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+
+        private readonly ServiceContext context ; 
+        private readonly IMapper mapper ; 
+        private readonly IUserRepository userRepository ; 
+
+        public UserController(ServiceContext context , IUserRepository userRepository , IMapper mapper)
         {
-            return new string[] { "value1", "value2" };
+
+            this.mapper         = mapper ; 
+            this.context        = context ; 
+            this.userRepository = userRepository ; 
+
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet]
+        public async Task<IActionResult> GetUsers()
         {
+            if(context.Users == null ){
+
+                return NotFound() ;
+
+            }
+
+            var userDomainModels = await userRepository.GetAllUsers() ; 
+
+            var usersDto = mapper.Map<List<UserDto>>(userDomainModels) ; 
+
+            return Ok(usersDto) ;
+
+        }
+
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> Getuser([FromRoute] Guid id)
+        {
+            
             return "value";
         }
 

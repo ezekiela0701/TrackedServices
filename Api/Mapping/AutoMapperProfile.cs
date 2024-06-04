@@ -10,8 +10,10 @@ namespace Api.Mapping
 {
     public class AutoMapperProfile : Profile
     {
-        public AutoMapperProfile(){
-
+        public AutoMapperProfile()
+        {
+            
+            //mapping client 
             CreateMap<Client , ClientDto>().ReverseMap() ;
 
             CreateMap<ClientAddRequestDto , Client>().ReverseMap() ;
@@ -19,6 +21,9 @@ namespace Api.Mapping
             CreateMap<Client , ClientAddRequestDto>().ReverseMap() ;
 
             CreateMap<ClientUpdateRequestDto , Client>().ReverseMap() ;
+
+            //mapping user 
+            CreateMap<User , UserDto>().ReverseMap() ;
 
         }
     }
