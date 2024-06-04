@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "AmF2PldEKlfGT/OGusCikggiWnVW7iVJktqmi1JEBwv4iUsD/khWvvVb5jSPzRov4fofjmLDffxfPkS3OmKWag==",
+  "dgSpecHash": "+5/MuJqehr9+sFJvtV0NmuKvOLonrYIbQZr4xC7yP/1i2EZpD+oGD3Yuxm4msaN92s826cAJPO16Fowh2Yocgw==",
   "success": true,
   "projectFilePath": "F:\\dafe\\Projects\\TrackedServices\\Api\\Api.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\LiDa\\.nuget\\packages\\automapper\\7.0.0\\automapper.7.0.0.nupkg.sha512",
+    "C:\\Users\\LiDa\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\LiDa\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\LiDa\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\LiDa\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

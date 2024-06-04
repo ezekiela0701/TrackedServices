@@ -9,6 +9,8 @@ using Api.Data;
 using Api.Models.Domain;
 using Api.Models.DTO;
 using Api.Repositories ; 
+using Api.Mapping ; 
+using AutoMapper ; 
 
 namespace Api.Controllers
 {
@@ -16,19 +18,19 @@ namespace Api.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
+        private readonly IMapper mapper;
         private readonly ServiceContext context;
         private readonly IClientRepository clientRepository;
 
-        public ClientController(ServiceContext context , IClientRepository clientRepository )
+        public ClientController(ServiceContext context , IClientRepository clientRepository , IMapper mapper )
         {
+            this.mapper           = mapper;
             this.context          = context;
             this.clientRepository = clientRepository;
         }
 
         // GET: api/Client
         [HttpGet]
-        // public async Task<ActionResult<IEnumerable<Client>>> GetClients()
-        // public async Task<ActionResult<IList<Client>>> GetClients()
         public async Task<IActionResult> GetClients()
         {
             if (context.Clients == null)
@@ -41,17 +43,20 @@ namespace Api.Controllers
             var clientsDomain =  await clientRepository.GetAllClient();
 
             //mapping dommain models to DTO
-            var clientsDto = new List<ClientDto>() ;
+            // var clientsDto = new List<ClientDto>() ;
 
-            foreach(var clientDomain in clientsDomain){
+            // foreach(var clientDomain in clientsDomain){
 
-                clientsDto.Add(new ClientDto(){
+            //     clientsDto.Add(new ClientDto(){
 
-                    Name = clientDomain.Name 
+            //         Id      = clientDomain.Id ,
+            //         Name    = clientDomain.Name 
 
-                }) ; 
+            //     }) ; 
 
-            }
+            // }
+            
+            var clientsDto = mapper.Map<List<ClientDto>>(clientsDomain) ;
 
             return Ok(clientsDto) ; 
             // return Ok(clientsDomain) ; 
@@ -59,21 +64,21 @@ namespace Api.Controllers
         }
 
         // GET: api/Client/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Client>> GetClient(Guid id)
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> GetClient([FromRoute] Guid id)
         {
           if (this.context.Clients == null)
           {
               return NotFound();
           }
-            var client = await this.context.Clients.FindAsync(id);
+            var client = await clientRepository.GetClientById(id);
 
             if (client == null)
             {
                 return NotFound();
             }
 
-            return client;
+            return Ok(client);
         }
 
         // PUT: api/Client/5
@@ -121,6 +126,7 @@ namespace Api.Controllers
 
             return CreatedAtAction("GetClient", new { id = client.Id }, client);
         }
+        
 
         // DELETE: api/Client/5
         [HttpDelete("{id}")]
