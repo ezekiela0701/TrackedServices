@@ -83,33 +83,24 @@ namespace Api.Controllers
 
         // PUT: api/Client/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutClient(Guid id, Client client)
+        [HttpPut("{id:Guid}")]
+        public async Task<IActionResult> PutClient([FromRoute] Guid id , ClientUpdateRequestDto ClientUpdateRequestDto)
         {
-            if (id != client.Id)
-            {
-                return BadRequest();
+            
+            var clientDomainModel = mapper.Map<Client>(ClientUpdateRequestDto) ;
+
+            if(clientDomainModel == null){
+
+                return NotFound() ;
+
             }
 
-            this.context.Entry(client).State = EntityState.Modified;
+            await clientRepository.UpdateClient(id , clientDomainModel) ;
 
-            try
-            {
-                await this.context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClientExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var clientDto = mapper.Map<ClientDto>(clientDomainModel) ;
 
-            return NoContent();
+            return Ok(clientDto) ;
+
         }
 
         // POST: api/Client

@@ -16,4 +16,6 @@ public interface IClientRepository
 
     public Task <Client> AddClient(Client client) ;
 
+    public Task <Client?> UpdateClient(Guid id , Client client) ;
+
 }

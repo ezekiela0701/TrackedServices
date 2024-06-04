@@ -18,6 +18,8 @@ namespace Api.Mapping
 
             CreateMap<Client , ClientAddRequestDto>().ReverseMap() ;
 
+            CreateMap<ClientUpdateRequestDto , Client>().ReverseMap() ;
+
         }
     }
 }

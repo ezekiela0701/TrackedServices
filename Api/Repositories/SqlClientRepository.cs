@@ -40,6 +40,22 @@ namespace Api.Repositories {
 
         }
 
+        public async Task <Client> UpdateClient(Guid id , Client client){
+
+            var clientExisting = await context.Clients.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(clientExisting == null){
+                return null ; 
+            }
+            
+            clientExisting.Name = client.Name ; 
+
+            await context.SaveChangesAsync() ;
+
+            return clientExisting ; 
+
+        }
+
     }
 
 }
