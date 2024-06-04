@@ -11,6 +11,8 @@ namespace Api.Repositories
     {
 
         public Task<List<User>> GetAllUsers() ;
+
+        public Task<User?> GetUser(Guid id) ;
     
     }
 }

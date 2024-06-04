@@ -14,15 +14,24 @@ namespace Api.Repositories
 
         private readonly ServiceContext context ; 
 
-        public SqlUserRepository(ServiceContext context){
+        public SqlUserRepository(ServiceContext context)
+        {
 
             this.context = context ;
 
         }
         
-        public async Task<List<User>> GetAllUsers(){
+        public async Task<List<User>> GetAllUsers()
+        {
 
             return await context.Users.ToListAsync(); 
+
+        }
+
+        public async Task<User> GetUser(Guid id)
+        {
+
+            return await context.Users.FirstOrDefaultAsync(x => x.Id == id) ; 
 
         }
 

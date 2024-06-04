@@ -49,10 +49,22 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id:Guid}")]
-        public async Task<IActionResult> Getuser([FromRoute] Guid id)
+        public async Task<IActionResult> GetUser([FromRoute] Guid id)
         {
-            
-            return "value";
+            if(context.Users == null)
+            {
+                return NotFound() ;
+            }
+
+            var user = await userRepository.GetUser(id) ;
+
+            if(user == null )
+            {
+                return NotFound() ;
+            }
+
+            return Ok(user) ;
+
         }
 
         [HttpPost]
