@@ -25,9 +25,18 @@ namespace Api.Repositories {
             return await context.Clients.ToListAsync(); 
 
         }
+
         public async Task <Client> GetClientById(Guid id){
 
             return await context.Clients.FirstOrDefaultAsync(x => x.Id == id); 
+
+        }
+
+        public async Task <Client> AddClient(Client client){
+
+            await context.Clients.AddAsync(client);
+            await context.SaveChangesAsync() ;
+            return client ; 
 
         }
 

@@ -11,6 +11,9 @@ public interface IClientRepository
 {
 
     public Task<List<Client>> GetAllClient() ;
+    
     public Task <Client?> GetClientById(Guid Id) ;
+
+    public Task <Client> AddClient(Client client) ;
 
 }

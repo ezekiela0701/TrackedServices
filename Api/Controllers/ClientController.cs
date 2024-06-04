@@ -115,18 +115,21 @@ namespace Api.Controllers
         // POST: api/Client
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Client>> PostClient(Client client)
+        public async Task<IActionResult> PostClient([FromBody] ClientAddRequestDto clientAddRequestDto)
         {
-          if (this.context.Clients == null)
-          {
-              return Problem("Entity set 'ServiceContext.Clients'  is null.");
-          }
-            this.context.Clients.Add(client);
-            await this.context.SaveChangesAsync();
+            
+            //Map DTO to Domain Model
+            var ClientDomainModel = mapper.Map<Client>(clientAddRequestDto) ;
+            
+            await clientRepository.AddClient(ClientDomainModel) ;
 
-            return CreatedAtAction("GetClient", new { id = client.Id }, client);
+            //Map Domain to DTO
+            var clientDto = mapper.Map<ClientDto>(ClientDomainModel) ; 
+
+            return Ok(clientDto) ; 
+
         }
-        
+
 
         // DELETE: api/Client/5
         [HttpDelete("{id}")]
