@@ -142,7 +142,7 @@ namespace Api.Controllers
             var client = await this.context.Clients.FindAsync(id);
             if (client == null)
             {
-                return NotFound();
+                return NotFound() ;
             }
 
             this.context.Clients.Remove(client);
