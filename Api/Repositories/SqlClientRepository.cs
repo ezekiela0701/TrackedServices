@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore ;
 using Api.Data ;
 using Api.Models.Domain ; 
 
-
 namespace Api.Repositories {
 
     public class SqlClientRepository: IClientRepository

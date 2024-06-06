@@ -43,5 +43,22 @@ namespace Api.Repositories
             return user ; 
         }
 
+        public async Task<User> UpdateUser(Guid id , User user)
+        {
+            var userExisting = await context.Users.FirstOrDefaultAsync( x => x.Id == id) ;
+
+            if(userExisting == null)
+            {
+                return null ;
+            }
+
+            userExisting.Name = user.Name ;
+
+            await context.SaveChangesAsync() ;
+
+            return user ;
+
+        }
+
     }
 }

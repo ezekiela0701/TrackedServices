@@ -73,15 +73,28 @@ namespace Api.Controllers
             var userDomainModel = mapper.Map<User>(userAddRequestDto) ; 
             await userRepository.AddUser(userDomainModel) ; 
 
-            var clientDto = mapper.Map<UserDto>(userDomainModel) ;
+            var userDto = mapper.Map<UserDto>(userDomainModel) ;
 
-            return Ok(clientDto); 
+            return Ok(userDto); 
 
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id:Guid}")]
+        public async Task<IActionResult> UpdateUser([FromRoute] Guid id,UserUpdateRequestDto UserUpdateRequestDto)
         {
+            var userDomainModel = mapper.Map<User>(UserUpdateRequestDto) ;
+
+            if(userDomainModel == null)
+            {
+                return NotFound() ;
+            }
+
+            await userRepository.UpdateUser(id , userDomainModel) ; 
+
+            var userDto = mapper.Map<UserDto>(userDomainModel) ;
+
+            return Ok(userDto) ;
+
         }
 
         [HttpDelete("{id}")]
