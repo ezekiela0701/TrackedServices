@@ -101,7 +101,7 @@ namespace Api.Controllers
         // POST: api/Services
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Service>> PostService(Service service)
+        public async Task<IActionResult> AddService(Service service)
         {
           if (this.context.Services == null)
           {
