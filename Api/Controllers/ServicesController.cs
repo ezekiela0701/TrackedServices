@@ -18,9 +18,9 @@ namespace Api.Controllers
     {
         private readonly IMapper mapper;
         private readonly ServiceContext context;
-        private readonly ServiceRepository serviceRepository;
+        private readonly IServiceRepository serviceRepository;
 
-        public ServicesController(ServiceContext context ,IMapper mapper , ServiceRepository serviceRepository)
+        public ServicesController(ServiceContext context ,IMapper mapper , IServiceRepository serviceRepository)
         {
             this.mapper             = mapper ; 
             this.context            = context ; 
@@ -37,9 +37,11 @@ namespace Api.Controllers
                 return NotFound() ;
             }
 
-            var serviceDomainModel = await  ;
+            var serviceDomainModel = await serviceRepository.GetAllServices() ;
 
-            var serviceDto = null ; 
+            var serviceDto = mapper.Map<List<ServiceDto>>(serviceDomainModel) ; 
+
+            return Ok(serviceDto) ; 
 
         }
 

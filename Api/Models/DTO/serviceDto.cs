@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Models.Domain ; 
 
 namespace Api.Models.DTO
 {
-    public class serviceDto
+    public class ServiceDto
     {
         public Guid Id { get; set; }
     

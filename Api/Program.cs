@@ -16,6 +16,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("TrackedServices"
 //injecting repository
 builder.Services.AddScoped<IClientRepository , SqlClientRepository>() ;
 builder.Services.AddScoped<IUserRepository , SqlUserRepository>() ;
+builder.Services.AddScoped<IserviceRepository , SqlServiceRepository>() ;
 
 //injecting automapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile)) ;
