@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Api.Data;
 using Api.Models.Domain;
+using AutoMapper ; 
+using Api.Mapping ; 
 
 namespace Api.Controllers
 {
@@ -14,26 +16,31 @@ namespace Api.Controllers
     [ApiController]
     public class ServicesController : ControllerBase
     {
+        private readonly IMapper mapper;
         private readonly ServiceContext context;
+        private readonly ServiceRepository serviceRepository;
 
-        public ServicesController(ServiceContext context)
+        public ServicesController(ServiceContext context ,IMapper mapper , ServiceRepository serviceRepository)
         {
-            this.context = context ; 
+            this.mapper             = mapper ; 
+            this.context            = context ; 
+            this.serviceRepository  = serviceRepository ; 
         }
 
         // GET: api/Services
         [HttpGet]
-        public async Task< ActionResult<IEnumerable<Service>>> GetServices()
+        public async Task<IActionResult> GetServices()
         {
-        //   if (this.context.Services == null)
-          if (this.context.Services == null)
-          {
-              return NotFound();
-          }
-            // return await this.context.Services.ToListAsync();
-            var serviceLists =  await this.context.Services.ToListAsync();
 
-            return serviceLists ;
+            if(context.Services == null)
+            {
+                return NotFound() ;
+            }
+
+            var serviceDomainModel = await  ;
+
+            var serviceDto = null ; 
+
         }
 
         // GET: api/Services/5

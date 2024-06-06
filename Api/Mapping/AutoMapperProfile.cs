@@ -29,6 +29,9 @@ namespace Api.Mapping
 
             CreateMap<UserUpdateRequestDto , User>().ReverseMap() ;
 
+            //mapping service
+            CreateMap<Service , ServiceDto>().ReverseMap() ;
+
         }
     }
 }
