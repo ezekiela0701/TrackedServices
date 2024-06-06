@@ -17,6 +17,8 @@ namespace Api.Repositories
         public Task<User> AddUser (User user) ;
 
         public Task<User> UpdateUser (Guid id , User user) ;
+
+        public Task<User> DeleteUser (Guid id ) ;
     
     }
 }

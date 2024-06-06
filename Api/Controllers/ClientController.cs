@@ -124,7 +124,7 @@ namespace Api.Controllers
 
         // DELETE: api/Client/5
         [HttpDelete("{id:Guid}")]
-        public async Task<IActionResult> DeleteClient(Guid id)
+        public async Task<IActionResult> DeleteClient([FromRoute]Guid id)
         {
 
             var clientDomainModel = await clientRepository.DeleteClient(id) ;

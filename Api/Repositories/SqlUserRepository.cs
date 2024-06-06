@@ -60,5 +60,22 @@ namespace Api.Repositories
 
         }
 
+        public async Task<User> DeleteUser(Guid id)
+        {
+            var userExisting = await context.Users.FirstOrDefaultAsync( x => x.Id == id) ;
+
+            if(userExisting == null)
+            {
+                return null ;
+            }
+
+            context.Users.Remove(userExisting) ;
+
+            await context.SaveChangesAsync() ;
+
+            return userExisting ; 
+
+        }
+
     }
 }

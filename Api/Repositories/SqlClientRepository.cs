@@ -59,7 +59,8 @@ namespace Api.Repositories {
 
             var clientExisting = await context.Clients.FirstOrDefaultAsync(x => x.Id == id);
 
-            if(clientExisting == null){
+            if(clientExisting == null)
+            {
                 return null ; 
             }
 

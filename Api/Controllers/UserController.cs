@@ -97,9 +97,20 @@ namespace Api.Controllers
 
         }
 
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id:Guid}")]
+        public async Task <IActionResult> Delete([FromRoute]Guid id)
         {
+            var userDomainModel = await userRepository.DeleteUser(id) ;
+
+            if(userDomainModel == null)
+            {
+                return NotFound() ;
+            }
+
+            var userDto = mapper.Map<UserDto>(userDomainModel) ;
+
+            return Ok(userDto) ; 
+
         }
     }
 }
