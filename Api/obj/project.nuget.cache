@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+5/MuJqehr9+sFJvtV0NmuKvOLonrYIbQZr4xC7yP/1i2EZpD+oGD3Yuxm4msaN92s826cAJPO16Fowh2Yocgw==",
+  "dgSpecHash": "hI7zleLWQtpPcYr9qvP6bpAi7bDeVJDhXNbt7xthXp5/wEXuuXuP+yNFgqzmMTp6XMLWCqssfk8CuciCNiZ79g==",
   "success": true,
-  "projectFilePath": "F:\\dafe\\Projects\\TrackedServices\\Api\\Api.csproj",
+  "projectFilePath": "F:\\dafe\\Projects\\Test\\TrackedServices\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LiDa\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\LiDa\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
