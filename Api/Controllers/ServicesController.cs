@@ -18,7 +18,6 @@ namespace Api.Controllers
 
         public ServicesController(ServiceContext context)
         {
-            // this.context = context;
             this.context = context ; 
         }
 
