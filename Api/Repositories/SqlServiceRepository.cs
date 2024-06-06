@@ -28,5 +28,10 @@ namespace Api.Repositories
 
         }
 
+        public async Task<Service> GetService(Guid id)
+        {
+            return await this.context.Services.FindAsync(id) ; 
+        }
+
     }
 }

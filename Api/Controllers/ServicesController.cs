@@ -48,22 +48,23 @@ namespace Api.Controllers
         }
 
         // GET: api/Services/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Service>> GetService(Guid id)
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> GetService([FromRoute] Guid id)
         {
-            if (this.context.Services == null)
+            if (context.Services == null)
             {
                 return NotFound();
             }
 
-            var service = await this.context.Services.FindAsync(id);
+            var serviceDomainModel = await serviceRepository.GetService(id) ;
 
-            if (service == null)
+            if (serviceDomainModel == null)
             {
                 return NotFound();
             }
 
-            return service ;
+            return Ok(serviceDomainModel) ;
+
         }
 
         // PUT: api/Services/5

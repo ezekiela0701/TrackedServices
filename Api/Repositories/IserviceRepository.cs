@@ -11,5 +11,7 @@ namespace Api.Repositories
 
         public Task <List<Service>> GetAllServices() ; 
 
+        public Task <Service?> GetService(Guid id) ; 
+
     }
 }
