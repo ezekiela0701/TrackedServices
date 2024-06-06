@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Api.Data;
 using Api.Models.Domain;
+using Api.Models.DTO ; 
 using AutoMapper ; 
 using Api.Mapping ; 
+using Api.Repositories ;
 
 namespace Api.Controllers
 {

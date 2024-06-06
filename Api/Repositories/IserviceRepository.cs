@@ -6,7 +6,7 @@ using Api.Models.Domain ;
 
 namespace Api.Repositories
 {
-    public interface IserviceRepository
+    public interface IServiceRepository
     {
 
         public Task <List<Service>> GetAllServices() ; 
