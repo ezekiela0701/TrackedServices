@@ -31,6 +31,8 @@ namespace Api.Mapping
 
             //mapping service
             CreateMap<Service , ServiceDto>().ReverseMap() ;
+            
+            CreateMap<ServiceAddRequestDto , Service>().ReverseMap() ;
 
         }
     }

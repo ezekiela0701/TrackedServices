@@ -33,5 +33,15 @@ namespace Api.Repositories
             return await this.context.Services.FindAsync(id) ; 
         }
 
+        public async Task<Service> AddService(Service service)
+        {
+            
+            context.Services.AddAsync(service) ; 
+            await context.SaveChangesAsync() ; 
+
+            return service ; 
+
+        }
+
     }
 }

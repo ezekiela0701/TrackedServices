@@ -15,9 +15,9 @@ public class Service
 
     public int Price { get; set; }
 
-    public Guid IdClient { get; set; }
+    public Guid ClientId { get; set; }
 
-    public Guid IdUser { get; set; }
+    public Guid UserId { get; set; }
 
     //navigation properties
 

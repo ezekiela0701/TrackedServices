@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Api.Models.Domain ; 
 
 namespace Api.Models.DTO
 {
-    public class ServiceDto
+    public class ServiceAddRequestDto
     {
-        public Guid Id { get; set; }
-    
+         
         public string Name { get; set; }
 
         public int Price { get; set; }
@@ -18,10 +16,5 @@ namespace Api.Models.DTO
 
         public Guid UserId { get; set; }
 
-        //navigation properties
-
-        public Client Client { get; set; }
-
-        public User User { get; set; }
     }
 }

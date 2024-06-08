@@ -101,16 +101,16 @@ namespace Api.Controllers
         // POST: api/Services
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<IActionResult> AddService(Service service)
+        public async Task<IActionResult> AddService([FromBody]ServiceAddRequestDto ServiceAddRequestDto)
         {
-          if (this.context.Services == null)
-          {
-              return Problem("Entity set 'ServiceContext.Services'  is null.");
-          }
-            this.context.Services.Add(service);
-            await this.context.SaveChangesAsync();
+            var serviceDomainModel = mapper.Map<Service>(ServiceAddRequestDto) ; 
 
-            return CreatedAtAction("GetService", new { id = service.Id }, service);
+            await serviceRepository.AddService(serviceDomainModel) ; 
+
+            var serviceDto = mapper.Map<ServiceDto>(serviceDomainModel) ;
+
+            return Ok(serviceDto) ; 
+
         }
 
         // DELETE: api/Services/5

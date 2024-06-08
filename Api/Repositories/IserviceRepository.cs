@@ -13,5 +13,7 @@ namespace Api.Repositories
 
         public Task <Service?> GetService(Guid id) ; 
 
+        public Task <Service> AddService(Service service) ; 
+
     }
 }
