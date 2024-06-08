@@ -15,5 +15,7 @@ namespace Api.Repositories
 
         public Task <Service> AddService(Service service) ; 
 
+        public Task <Service> UpdateService(Guid id , Service service) ; 
+
     }
 }

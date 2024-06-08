@@ -69,33 +69,22 @@ namespace Api.Controllers
 
         // PUT: api/Services/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutService(Guid id, Service service)
+        [HttpPut("{id:Guid}")]
+        public async Task<IActionResult> UpdateService([FromRoute]Guid id, ServiceUpdateRequestDto ServiceUpdateRequestDto)
         {
-            if (id != service.Id)
+            var serviceDomainModel = mapper.Map<Service>(ServiceUpdateRequestDto) ;
+
+            if(serviceDomainModel == null)
             {
-                return BadRequest();
+                return NotFound() ; 
             }
 
-            this.context.Entry(service).State = EntityState.Modified;
+            await serviceRepository.UpdateService(id, serviceDomainModel) ; 
 
-            try
-            {
-                await this.context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ServiceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var serviceDto = mapper.Map<ServiceDto>(serviceDomainModel) ;
 
-            return NoContent();
+            return Ok(serviceDto) ;
+
         }
 
         // POST: api/Services
@@ -113,30 +102,6 @@ namespace Api.Controllers
 
         }
 
-        // DELETE: api/Services/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteService(Guid id)
-        {
-            if (this.context.Services == null)
-            {
-                return NotFound();
-            }
-            var service = await this.context.Services.FindAsync(id);
-            if (service == null)
-            {
-                return NotFound();
-            }
-
-            this.context.Services.Remove(service);
-            await this.context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ServiceExists(Guid id)
-        {
-            // return (this.context.Services?.Any(e => e.Id == id)).GetValueOrDefault();
-            return (this.context.Services?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+        
     }
 }

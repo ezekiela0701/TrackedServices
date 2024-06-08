@@ -43,5 +43,27 @@ namespace Api.Repositories
 
         }
 
+        public async Task<Service> UpdateService(Guid id , Service service)
+        {
+
+            var serviceExisting = await context.Services.FirstOrDefaultAsync(x => x.Id == id) ; 
+
+            if(serviceExisting == null)
+            {
+                return null ; 
+            }
+
+            serviceExisting.Name        = service.Name ; 
+            serviceExisting.Price       = service.Price ; 
+            serviceExisting.ClientId    = service.ClientId ; 
+            serviceExisting.UserId      = service.UserId ; 
+
+            
+            await context.SaveChangesAsync() ; 
+
+            return serviceExisting ; 
+
+        }
+
     }
 }
