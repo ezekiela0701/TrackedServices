@@ -5,6 +5,7 @@ using Api.Mapping ;
 using System.Text ; 
 using Microsoft.AspNetCore.Authentication.JwtBearer ; 
 using Microsoft.IdentityModel.Tokens ; 
+using Microsoft.AspNetCore.Identity ;
 // using Microsoft.IdentityModel.Tokens.SymmetricSecurityKey ; 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +29,23 @@ builder.Services.AddScoped<IServiceRepository , SqlServiceRepository>() ;
 
 //injecting automapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile)) ;
+
+//Setting up identity for authentication
+builder.Services.AddIdentityCore<IdentityUser>()
+    .AddRoles<IdentityRole>()
+    .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("Tracked")
+    .AddEntityFrameworkStores<ServiceAuthContext>()
+    .AddDefaultTokenProviders() ;
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = false ;
+    options.Password.RequireLowercase = false ; 
+    options.Password.RequireNonAlphanumeric = false ;
+    options.Password.RequireUppercase = false ; 
+    options.Password.RequiredLength = 7 ; 
+    options.Password.RequiredUniqueChars = 1 ;
+}) ;
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
