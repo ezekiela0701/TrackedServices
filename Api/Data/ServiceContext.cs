@@ -10,7 +10,7 @@ using Api.Models.Domain ;
 public class ServiceContext : DbContext
 {
     
-    public ServiceContext(DbContextOptions DbContextOption) : base(DbContextOption)
+    public ServiceContext(DbContextOptions<ServiceContext> DbContextOption) : base(DbContextOption)
     {
         
     }

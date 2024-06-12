@@ -2,6 +2,10 @@ using Microsoft.EntityFrameworkCore ;
 using Api.Data ; 
 using Api.Repositories ; 
 using Api.Mapping ; 
+using System.Text ; 
+using Microsoft.AspNetCore.Authentication.JwtBearer ; 
+using Microsoft.IdentityModel.Tokens ; 
+// using Microsoft.IdentityModel.Tokens.SymmetricSecurityKey ; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +16,10 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ServiceContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("TrackedServices"))
 ) ; 
+
+builder.Services.AddDbContext<ServiceAuthContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("TrackedAuthServices"))
+) ;
 
 //injecting repository
 builder.Services.AddScoped<IClientRepository , SqlClientRepository>() ;
@@ -25,6 +33,19 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile)) ;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Authentication method
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) 
+    .AddJwtBearer( options =>
+    options.TokenValidationParameters = new TokenValidationParameters{
+        ValidateIssuer = true , 
+        ValidateAudience = true ,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true , 
+        ValidIssuer = builder.Configuration["Jwt:Issuer"] , 
+        ValidAudience = builder.Configuration["Jwt:Audience"] ,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    }); 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -36,6 +57,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication() ;
 app.UseAuthorization();
 
 app.MapControllers();

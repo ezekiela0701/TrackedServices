@@ -68,7 +68,6 @@ namespace Api.Controllers
         }
 
         // PUT: api/Services/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id:Guid}")]
         public async Task<IActionResult> UpdateService([FromRoute]Guid id, ServiceUpdateRequestDto ServiceUpdateRequestDto)
         {
@@ -88,7 +87,6 @@ namespace Api.Controllers
         }
 
         // POST: api/Services
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<IActionResult> AddService([FromBody]ServiceAddRequestDto ServiceAddRequestDto)
         {
@@ -101,7 +99,6 @@ namespace Api.Controllers
             return Ok(serviceDto) ; 
 
         }
-
         
     }
 }
