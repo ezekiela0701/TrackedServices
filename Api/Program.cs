@@ -6,7 +6,7 @@ using System.Text ;
 using Microsoft.AspNetCore.Authentication.JwtBearer ; 
 using Microsoft.IdentityModel.Tokens ; 
 using Microsoft.AspNetCore.Identity ;
-// using Microsoft.IdentityModel.Tokens.SymmetricSecurityKey ; 
+using Microsoft.OpenApi.Models ; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +26,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("TrackedAuthServi
 builder.Services.AddScoped<IClientRepository , SqlClientRepository>() ;
 builder.Services.AddScoped<IUserRepository , SqlUserRepository>() ;
 builder.Services.AddScoped<IServiceRepository , SqlServiceRepository>() ;
+builder.Services.AddScoped<ITokenRepository , TokenRepository>();
 
 //injecting automapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile)) ;
@@ -49,7 +50,43 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+//configure authorization
+builder.Services.AddSwaggerGen(options => 
+{
+
+    options.SwaggerDoc("v1", new OpenApiInfo {Title = "Tracked services API" , Version ="v1"}) ;
+    options.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+    {
+
+        Name    = "Authorization" ,
+        In      = ParameterLocation.Header,
+        Type    = SecuritySchemeType.ApiKey,
+        Scheme  = JwtBearerDefaults.AuthenticationScheme
+
+    }) ;
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id   = JwtBearerDefaults.AuthenticationScheme
+                } , 
+
+                Scheme  = "Oauth2",
+                Name    = JwtBearerDefaults.AuthenticationScheme,
+                In      = ParameterLocation.Header
+
+            } ,
+            new List<string>()
+        }
+    });
+
+});
 
 //Authentication method
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) 

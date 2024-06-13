@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity ; 
 using Microsoft.AspNetCore.Mvc ;
 using Api.Models.DTO ;
+using Api.Repositories ;
 
 namespace Api.Controllers
 {
@@ -14,10 +15,12 @@ namespace Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> userManager ; 
+        private readonly ITokenRepository tokenRepository ;
 
-        public AuthController(UserManager<IdentityUser> userManager)
+        public AuthController(UserManager<IdentityUser> userManager, ITokenRepository tokenRepository)
         {
-            this.userManager = userManager ; 
+            this.userManager     = userManager ; 
+            this.tokenRepository = tokenRepository ; 
         }
 
         // POST : /api/Auth/Register
@@ -71,7 +74,21 @@ namespace Api.Controllers
                 if(checkPasswordResult)
                 {
 
-                    return Ok("Succesfull login") ;
+                    var roles = await userManager.GetRolesAsync(user) ;
+
+                    if(roles != null)
+                    {
+                        //create token
+                        
+                        var jwtToken = tokenRepository.CreateJwtToken(user , roles.ToList()) ;
+                        var response = new AuthResponseDto
+                        {
+                            JwtToken = jwtToken
+                        } ;
+ 
+                        return Ok(response) ;
+
+                    }
 
                 }
                 return BadRequest("Password incorrect") ;

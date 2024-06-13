@@ -11,6 +11,7 @@ using Api.Models.DTO ;
 using AutoMapper ; 
 using Api.Mapping ; 
 using Api.Repositories ;
+using Microsoft.AspNetCore.Authorization ;
 
 namespace Api.Controllers
 {
@@ -31,6 +32,7 @@ namespace Api.Controllers
 
         // GET: api/Services
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetServices()
         {
 
@@ -49,6 +51,7 @@ namespace Api.Controllers
 
         // GET: api/Services/5
         [HttpGet("{id:Guid}")]
+        [Authorize]
         public async Task<IActionResult> GetService([FromRoute] Guid id)
         {
             if (context.Services == null)
@@ -69,6 +72,7 @@ namespace Api.Controllers
 
         // PUT: api/Services/5
         [HttpPut("{id:Guid}")]
+        [Authorize]
         public async Task<IActionResult> UpdateService([FromRoute]Guid id, ServiceUpdateRequestDto ServiceUpdateRequestDto)
         {
             var serviceDomainModel = mapper.Map<Service>(ServiceUpdateRequestDto) ;
@@ -88,6 +92,7 @@ namespace Api.Controllers
 
         // POST: api/Services
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddService([FromBody]ServiceAddRequestDto ServiceAddRequestDto)
         {
             var serviceDomainModel = mapper.Map<Service>(ServiceAddRequestDto) ; 
