@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.Identity ;
 using Microsoft.AspNetCore.Mvc ;
 using Api.Models.DTO ;
 
-namespace Namespace
+namespace Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> userManager ; 
+
         public AuthController(UserManager<IdentityUser> userManager)
         {
             this.userManager = userManager ; 
@@ -51,6 +52,32 @@ namespace Namespace
             }
 
             return BadRequest("Something went wrong") ;
+
+        }
+
+        //api/Auth/Login
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login([FromBody] AuthLoginRequestDto authLoginRequestDto)
+        {
+            
+            var user = await userManager.FindByEmailAsync(authLoginRequestDto.Username) ; 
+
+            if(user != null)
+            {
+
+                var checkPasswordResult = await userManager.CheckPasswordAsync(user , authLoginRequestDto.Password) ;
+
+                if(checkPasswordResult)
+                {
+
+                    return Ok("Succesfull login") ;
+
+                }
+                return BadRequest("Password incorrect") ;
+
+            }
+            return BadRequest("Username incorrect") ;
 
         }
 
