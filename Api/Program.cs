@@ -7,11 +7,15 @@ using Microsoft.AspNetCore.Authentication.JwtBearer ;
 using Microsoft.IdentityModel.Tokens ; 
 using Microsoft.AspNetCore.Identity ;
 using Microsoft.OpenApi.Models ; 
+using Microsoft.Extensions.FileProviders ;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+builder.Services.AddHttpContextAccessor() ;
+
 
 //database
 builder.Services.AddDbContext<ServiceContext>(options =>
@@ -27,6 +31,7 @@ builder.Services.AddScoped<IClientRepository , SqlClientRepository>() ;
 builder.Services.AddScoped<IUserRepository , SqlUserRepository>() ;
 builder.Services.AddScoped<IServiceRepository , SqlServiceRepository>() ;
 builder.Services.AddScoped<ITokenRepository , TokenRepository>();
+builder.Services.AddScoped<IImageRepository , ImageRepository>();
 
 //injecting automapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile)) ;
@@ -114,6 +119,13 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication() ;
 app.UseAuthorization();
+
+//authorization file to acces
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory() , "Images")) ,
+    RequestPath = "/Images" 
+}) ;
 
 app.MapControllers();
 

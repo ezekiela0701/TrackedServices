@@ -21,4 +21,6 @@ public class ServiceContext : DbContext
     
     public DbSet<User> Users { get; set; }  
 
+    public DbSet<Image> Images { get; set; }
+
 }
